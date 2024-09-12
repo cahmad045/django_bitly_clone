@@ -1,6 +1,6 @@
 from django import forms
-
-class LinkForm(forms.Form):
-    name = forms.CharField(max_length=50)
-    url = forms.URLField(max_length=500)
-    slug = forms.SlugField(required=False)
+from .models import Links
+class LinkForm(forms.ModelForm):
+    class Meta:
+        model = Links
+        fields = ['name', 'url', 'slug']

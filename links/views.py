@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
+from django.urls import reverse
 from .models import Links
 from .forms import LinkForm
 # Create your views here.
@@ -21,6 +22,9 @@ def create_link(request):
         if form.is_valid():
             print("FORM IS VALID")
             print(form.cleaned_data)
+            form.save()
+
+            return redirect(reverse("home"))
     else:
         form = LinkForm()
     context = {
